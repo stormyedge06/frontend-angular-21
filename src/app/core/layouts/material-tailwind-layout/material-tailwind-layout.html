@@ -1,22 +1,32 @@
-<div class="layout-tw min-h-screen bg-slate-50 text-slate-900">
-	<mat-toolbar class="layout-tw__toolbar px-4 py-2">
-		<span class="font-semibold">Portfolio · Material + Tailwind</span>
-		<span class="flex-1"></span>
-		<a mat-button href="#sobre-mi">Sobre mí</a>
-		<a mat-button href="#proyectos">Proyectos</a>
-		<a mat-button href="#contacto">Contacto</a>
-		<button mat-button type="button" (click)="onSwitchLayout()">Usar Bootstrap</button>
-	</mat-toolbar>
+<div class="shell-tw">
+	<aside class="shell-tw__sidebar" aria-label="Sidebar">
+		<mat-toolbar class="shell-tw__sidebar-title">Menu</mat-toolbar>
 
-	<section class="mx-auto w-full max-w-5xl p-4 md:p-6">
-		<mat-card class="rounded-2xl shadow-sm">
-			<mat-card-content class="p-0!">
-				<app-header-tailwind [name]="name()" [role]="role()" />
-				<div class="p-4 md:p-6">
-					<ng-content />
-				</div>
-				<app-footer-tailwind [name]="name()" />
-			</mat-card-content>
-		</mat-card>
+		<nav class="shell-tw__menu" aria-label="Navegación lateral">
+			<ul role="list">
+				<li><button mat-button type="button" disabled>Inicio</button></li>
+				<li><button mat-button type="button" disabled>Sobre mí</button></li>
+				<li><button mat-button type="button" disabled>Proyectos</button></li>
+				<li><button mat-button type="button" disabled>Contacto</button></li>
+			</ul>
+		</nav>
+
+		<div class="shell-tw__switch">
+			<button mat-button type="button" (click)="onSwitchLayout()">Usar Bootstrap</button>
+		</div>
+	</aside>
+
+	<section class="shell-tw__body" aria-label="Body">
+		<header class="shell-tw__header">
+			<app-header-tailwind [name]="name()" [role]="role()" />
+		</header>
+
+		<main class="shell-tw__content" aria-label="Content">
+			<!-- <ng-content /> -->
+		</main>
+
+		<footer class="shell-tw__footer">
+			<app-footer-tailwind [name]="name()" />
+		</footer>
 	</section>
 </div>

@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FooterBootstrap } from '../../components/footer-bootstrap/footer-bootstrap';
 import { HeaderBootstrap } from '../../components/header-bootstrap/header-bootstrap';
 
 @Component({
   selector: 'app-material-bootstrap-layout',
-  imports: [MatToolbarModule, MatButtonModule, MatCardModule, HeaderBootstrap, FooterBootstrap],
+  imports: [MatToolbarModule, MatButtonModule, HeaderBootstrap, FooterBootstrap],
   templateUrl: './material-bootstrap-layout.html',
   styleUrl: './material-bootstrap-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

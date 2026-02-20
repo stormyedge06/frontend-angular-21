@@ -1,26 +1,32 @@
-<div class="layout-bs min-vh-100 bg-body-tertiary">
-	<mat-toolbar class="layout-bs__toolbar px-3">
-		<span>Portfolio · Material + Bootstrap</span>
-		<span class="flex-spacer"></span>
-		<a mat-button href="#sobre-mi">Sobre mí</a>
-		<a mat-button href="#proyectos">Proyectos</a>
-		<a mat-button href="#contacto">Contacto</a>
-		<button mat-button type="button" (click)="onSwitchLayout()">Usar Tailwind</button>
-	</mat-toolbar>
+<div class="shell-bs">
+	<aside class="shell-bs__sidebar" aria-label="Sidebar">
+		<mat-toolbar class="shell-bs__sidebar-title">Menu</mat-toolbar>
 
-	<main class="container py-4 py-md-5">
-		<div class="row justify-content-center">
-			<div class="col-12 col-xl-10">
-				<mat-card class="shadow-sm border-0 rounded-4">
-					<mat-card-content>
-						<app-header-bootstrap [name]="name()" [role]="role()" />
-						<div class="pt-3">
-							<ng-content />
-						</div>
-						<app-footer-bootstrap [name]="name()" />
-					</mat-card-content>
-				</mat-card>
-			</div>
+		<nav class="shell-bs__menu" aria-label="Navegación lateral">
+			<ul role="list">
+				<li><button mat-button type="button" disabled>Inicio</button></li>
+				<li><button mat-button type="button" disabled>Sobre mí</button></li>
+				<li><button mat-button type="button" disabled>Proyectos</button></li>
+				<li><button mat-button type="button" disabled>Contacto</button></li>
+			</ul>
+		</nav>
+
+		<div class="shell-bs__switch">
+			<button mat-button type="button" (click)="onSwitchLayout()">Usar Tailwind</button>
 		</div>
-	</main>
+	</aside>
+
+	<section class="shell-bs__body" aria-label="Body">
+		<header class="shell-bs__header">
+			<app-header-bootstrap [name]="name()" [role]="role()"></app-header-bootstrap>
+		</header>
+
+		<main class="shell-bs__content" aria-label="Content">
+			<!-- <ng-content></ng-content> -->
+		</main>
+
+		<footer class="shell-bs__footer">
+			<app-footer-bootstrap [name]="name()"></app-footer-bootstrap>
+		</footer>
+	</section>
 </div>

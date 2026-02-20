@@ -1,0 +1,26 @@
+<div class="layout-bs min-vh-100 bg-body-tertiary">
+	<mat-toolbar class="layout-bs__toolbar px-3">
+		<span>Portfolio · Material + Bootstrap</span>
+		<span class="flex-spacer"></span>
+		<a mat-button href="#sobre-mi">Sobre mí</a>
+		<a mat-button href="#proyectos">Proyectos</a>
+		<a mat-button href="#contacto">Contacto</a>
+		<button mat-button type="button" (click)="onSwitchLayout()">Usar Tailwind</button>
+	</mat-toolbar>
+
+	<main class="container py-4 py-md-5">
+		<div class="row justify-content-center">
+			<div class="col-12 col-xl-10">
+				<mat-card class="shadow-sm border-0 rounded-4">
+					<mat-card-content>
+						<app-header-bootstrap [name]="name()" [role]="role()" />
+						<div class="pt-3">
+							<ng-content />
+						</div>
+						<app-footer-bootstrap [name]="name()" />
+					</mat-card-content>
+				</mat-card>
+			</div>
+		</div>
+	</main>
+</div>

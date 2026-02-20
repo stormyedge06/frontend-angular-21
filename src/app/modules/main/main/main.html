@@ -1,1 +1,103 @@
-<p>main works!</p>
+@if (layoutMode() === 'tailwind') {
+	<app-material-tailwind-layout
+		[name]="profile().name"
+		[role]="profile().role"
+		(switchLayout)="toggleLayout()"
+	>
+		<main class="portfolio" aria-label="Portfolio personal">
+			<section class="hero" id="inicio">
+				<p class="hero__role">{{ profile().role }}</p>
+				<h1>{{ profile().name }}</h1>
+				<p class="hero__about">{{ profile().about }}</p>
+				<div class="hero__actions">
+					<a href="#proyectos">Ver proyectos</a>
+					<a [href]="'mailto:' + profile().email">Contactar</a>
+				</div>
+			</section>
+
+			<section class="section" id="sobre-mi" aria-labelledby="title-about">
+				<h2 id="title-about">Sobre mí</h2>
+				<p>{{ profile().availability }}</p>
+				<p><strong>Ubicación:</strong> {{ profile().location }}</p>
+			</section>
+
+			<section class="section" id="habilidades" aria-labelledby="title-skills">
+				<h2 id="title-skills">Tecnologías</h2>
+				<ul class="chips" role="list">
+					@for (skill of skills(); track skill) {
+						<li>{{ skill }}</li>
+					}
+				</ul>
+			</section>
+
+			<section class="section" id="proyectos" aria-labelledby="title-projects">
+				<h2 id="title-projects">Proyectos</h2>
+				<div class="projects">
+					@for (project of projects(); track project.name) {
+						<app-project-card [project]="project" [layout]="layoutMode()" />
+					}
+				</div>
+			</section>
+
+			<section class="section" id="contacto" aria-labelledby="title-contact">
+				<h2 id="title-contact">Contacto</h2>
+				<p>
+					Escríbeme a
+					<a [href]="'mailto:' + profile().email">{{ profile().email }}</a>
+					para colaborar en tu próximo proyecto.
+				</p>
+			</section>
+		</main>
+	</app-material-tailwind-layout>
+} @else {
+	<app-material-bootstrap-layout
+		[name]="profile().name"
+		[role]="profile().role"
+		(switchLayout)="toggleLayout()"
+	>
+		<main class="portfolio" aria-label="Portfolio personal">
+			<section class="hero" id="inicio">
+				<p class="hero__role">{{ profile().role }}</p>
+				<h1>{{ profile().name }}</h1>
+				<p class="hero__about">{{ profile().about }}</p>
+				<div class="hero__actions">
+					<a href="#proyectos">Ver proyectos</a>
+					<a [href]="'mailto:' + profile().email">Contactar</a>
+				</div>
+			</section>
+
+			<section class="section" id="sobre-mi" aria-labelledby="title-about">
+				<h2 id="title-about">Sobre mí</h2>
+				<p>{{ profile().availability }}</p>
+				<p><strong>Ubicación:</strong> {{ profile().location }}</p>
+			</section>
+
+			<section class="section" id="habilidades" aria-labelledby="title-skills">
+				<h2 id="title-skills">Tecnologías</h2>
+				<ul class="chips" role="list">
+					@for (skill of skills(); track skill) {
+						<li>{{ skill }}</li>
+					}
+				</ul>
+			</section>
+
+			<section class="section" id="proyectos" aria-labelledby="title-projects">
+				<h2 id="title-projects">Proyectos</h2>
+				<div class="projects">
+					@for (project of projects(); track project.name) {
+						<app-project-card [project]="project" [layout]="layoutMode()" />
+					}
+				</div>
+			</section>
+
+			<section class="section" id="contacto" aria-labelledby="title-contact">
+				<h2 id="title-contact">Contacto</h2>
+				<p>
+					Escríbeme a
+					<a [href]="'mailto:' + profile().email">{{ profile().email }}</a>
+					para colaborar en tu próximo proyecto.
+				</p>
+			</section>
+		</main>
+	</app-material-bootstrap-layout>
+}

@@ -1,0 +1,5 @@
+@if (layout() === 'bootstrap') {
+  <app-project-card-bootstrap-skin [project]="project()"></app-project-card-bootstrap-skin>
+} @else {
+  <app-project-card-tailwind-skin [project]="project()"></app-project-card-tailwind-skin>
+}

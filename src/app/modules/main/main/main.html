@@ -10,19 +10,19 @@
 				<h1>{{ profile().name }}</h1>
 				<p class="hero__about">{{ profile().about }}</p>
 				<div class="hero__actions">
-					<a href="#proyectos">Ver proyectos</a>
-					<a [href]="'mailto:' + profile().email">Contactar</a>
+					<a href="#proyectos">{{ text().heroProjectsCta }}</a>
+					<a [href]="'mailto:' + profile().email">{{ text().heroContactCta }}</a>
 				</div>
 			</section>
 
 			<section class="section" id="sobre-mi" aria-labelledby="title-about">
-				<h2 id="title-about">Sobre mí</h2>
+				<h2 id="title-about">{{ text().aboutTitle }}</h2>
 				<p>{{ profile().availability }}</p>
 				<p><strong>Ubicación:</strong> {{ profile().location }}</p>
 			</section>
 
 			<section class="section" id="habilidades" aria-labelledby="title-skills">
-				<h2 id="title-skills">Tecnologías</h2>
+				<h2 id="title-skills">{{ text().skillsTitle }}</h2>
 				<ul class="chips" role="list">
 					@for (skill of skills(); track skill) {
 						<li>{{ skill }}</li>
@@ -31,7 +31,7 @@
 			</section>
 
 			<section class="section" id="proyectos" aria-labelledby="title-projects">
-				<h2 id="title-projects">Proyectos</h2>
+				<h2 id="title-projects">{{ text().projectsTitle }}</h2>
 				<div class="projects">
 					@for (project of projects(); track project.name) {
 						<app-project-card [project]="project" [layout]="layoutMode()" />
@@ -40,11 +40,11 @@
 			</section>
 
 			<section class="section" id="contacto" aria-labelledby="title-contact">
-				<h2 id="title-contact">Contacto</h2>
+				<h2 id="title-contact">{{ text().contactTitle }}</h2>
 				<p>
-					Escríbeme a
+					{{ text().contactPrefix }}
 					<a [href]="'mailto:' + profile().email">{{ profile().email }}</a>
-					para colaborar en tu próximo proyecto.
+					{{ text().contactSuffix }}
 				</p>
 			</section>
 		</main>
@@ -61,19 +61,19 @@
 				<h1>{{ profile().name }}</h1>
 				<p class="hero__about">{{ profile().about }}</p>
 				<div class="hero__actions">
-					<a href="#proyectos">Ver proyectos</a>
-					<a [href]="'mailto:' + profile().email">Contactar</a>
+					<a href="#proyectos">{{ text().heroProjectsCta }}</a>
+					<a [href]="'mailto:' + profile().email">{{ text().heroContactCta }}</a>
 				</div>
 			</section>
 
 			<section class="section" id="sobre-mi" aria-labelledby="title-about">
-				<h2 id="title-about">Sobre mí</h2>
+				<h2 id="title-about">{{ text().aboutTitle }}</h2>
 				<p>{{ profile().availability }}</p>
 				<p><strong>Ubicación:</strong> {{ profile().location }}</p>
 			</section>
 
 			<section class="section" id="habilidades" aria-labelledby="title-skills">
-				<h2 id="title-skills">Tecnologías</h2>
+				<h2 id="title-skills">{{ text().skillsTitle }}</h2>
 				<ul class="chips" role="list">
 					@for (skill of skills(); track skill) {
 						<li>{{ skill }}</li>
@@ -82,7 +82,7 @@
 			</section>
 
 			<section class="section" id="proyectos" aria-labelledby="title-projects">
-				<h2 id="title-projects">Proyectos</h2>
+				<h2 id="title-projects">{{ text().projectsTitle }}</h2>
 				<div class="projects">
 					@for (project of projects(); track project.name) {
 						<app-project-card [project]="project" [layout]="layoutMode()" />
@@ -91,11 +91,11 @@
 			</section>
 
 			<section class="section" id="contacto" aria-labelledby="title-contact">
-				<h2 id="title-contact">Contacto</h2>
+				<h2 id="title-contact">{{ text().contactTitle }}</h2>
 				<p>
-					Escríbeme a
+					{{ text().contactPrefix }}
 					<a [href]="'mailto:' + profile().email">{{ profile().email }}</a>
-					para colaborar en tu próximo proyecto.
+					{{ text().contactSuffix }}
 				</p>
 			</section>
 		</main>

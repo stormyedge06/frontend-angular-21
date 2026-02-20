@@ -3,8 +3,18 @@ import { ChangeDetectionStrategy, Component, PLATFORM_ID, inject, signal } from 
 import { MaterialBootstrapLayout } from '../../../core/layouts/material-bootstrap-layout/material-bootstrap-layout';
 import { MaterialTailwindLayout } from '../../../core/layouts/material-tailwind-layout/material-tailwind-layout';
 import type { LayoutMode } from '../../../core/models/layout-mode.type';
+import {
+  DEFAULT_PORTFOLIO_TEXT,
+  PORTFOLIO_CONTENT,
+  type PortfolioText,
+} from '../../../core/models/portfolio-content.model';
 import { ProjectCard } from '../../../shared/components/project-card/project-card';
-import type { ProjectCardData } from '../../../shared/components/project-card/project-card.model';
+
+type PortfolioI18nPayload = {
+  portfolio?: {
+    text?: Partial<PortfolioText>;
+  };
+};
 
 @Component({
   selector: 'app-main',
@@ -28,6 +38,8 @@ export class Main {
     if (savedLayout === 'bootstrap' || savedLayout === 'tailwind') {
       this.layoutMode.set(savedLayout);
     }
+
+    void this.loadTextsFromEsJson();
   }
 
   protected toggleLayout(): void {
@@ -40,47 +52,31 @@ export class Main {
     localStorage.setItem(this.storageKey, this.layoutMode());
   }
 
-  protected readonly profile = signal({
-    name: 'Tu Nombre',
-    role: 'Frontend Developer',
-    about:
-      'Construyo interfaces web rápidas, accesibles y mantenibles con Angular y TypeScript.',
-    email: 'tu-email@dominio.com',
-    location: 'Tu ciudad, tu país',
-    availability: 'Disponible para proyectos freelance y posiciones full-time.',
-  });
+  protected readonly profile = signal(PORTFOLIO_CONTENT.profile);
+  protected readonly skills = signal(PORTFOLIO_CONTENT.skills);
+  protected readonly projects = signal(PORTFOLIO_CONTENT.projects);
+  protected readonly text = signal(DEFAULT_PORTFOLIO_TEXT);
 
-  protected readonly skills = signal([
-    'Angular',
-    'TypeScript',
-    'RxJS',
-    'HTML semántico',
-    'CSS responsive',
-    'Testing',
-  ]);
+  private async loadTextsFromEsJson(): Promise<void> {
+    try {
+      const response = await fetch('/i18n/es.json');
+      if (!response.ok) {
+        return;
+      }
 
-  protected readonly projects = signal<ProjectCardData[]>([
-    {
-      name: 'Proyecto 1',
-      summary: 'Aplicación web para gestionar tareas con autenticación y panel de métricas.',
-      stack: ['Angular', 'TypeScript', 'Node.js'],
-      demoUrl: '#',
-      repoUrl: '#',
-    },
-    {
-      name: 'Proyecto 2',
-      summary: 'Landing optimizada para conversión con formularios y contenido dinámico.',
-      stack: ['Angular', 'SSR', 'SCSS'],
-      demoUrl: '#',
-      repoUrl: '#',
-    },
-    {
-      name: 'Proyecto 3',
-      summary: 'Dashboard de analítica con filtros, tablas y visualización de indicadores.',
-      stack: ['Angular', 'Signals', 'REST API'],
-      demoUrl: '#',
-      repoUrl: '#',
-    },
-  ]);
+      const payload = (await response.json()) as PortfolioI18nPayload;
+      const translatedText = payload.portfolio?.text;
+      if (!translatedText) {
+        return;
+      }
+
+      this.text.update((current) => ({
+        ...current,
+        ...translatedText,
+      }));
+    } catch {
+      return;
+    }
+  }
 
 }

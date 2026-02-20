@@ -1,0 +1,14 @@
+{
+  "portfolio": {
+    "text": {
+      "heroProjectsCta": "Ver proyectos",
+      "heroContactCta": "Contactar",
+      "aboutTitle": "Sobre mí",
+      "skillsTitle": "Tecnologías",
+      "projectsTitle": "Proyectos",
+      "contactTitle": "Contacto",
+      "contactPrefix": "Escríbeme a",
+      "contactSuffix": "para colaborar en tu próximo proyecto."
+    }
+  }
+}

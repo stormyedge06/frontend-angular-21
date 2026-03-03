@@ -2,3 +2,30 @@
 
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "tailwindcss";
+
+body[data-theme='light'] {
+	--app-bg: #f8fafc;
+	--app-surface: #ffffff;
+	--app-text: #0f172a;
+	--app-muted: #475569;
+	--app-border: #cbd5e1;
+	--app-link: #0f172a;
+}
+
+body[data-theme='dark'] {
+	--app-bg: #0b1220;
+	--app-surface: #111827;
+	--app-text: #e5e7eb;
+	--app-muted: #94a3b8;
+	--app-border: #334155;
+	--app-link: #e5e7eb;
+}
+
+body {
+	background-color: var(--app-bg);
+	color: var(--app-text);
+}
+
+a {
+	color: var(--app-link);
+}

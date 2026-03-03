@@ -10,15 +10,18 @@
 				<li><button mat-button type="button" disabled>Contacto</button></li>
 			</ul>
 		</nav>
-
-		<div class="shell-bs__switch">
-			<button mat-button type="button" (click)="onSwitchLayout()">Usar Tailwind</button>
-		</div>
 	</aside>
 
 	<section class="shell-bs__body" aria-label="Body">
 		<header class="shell-bs__header">
-			<app-header-bootstrap [name]="name()" [role]="role()"></app-header-bootstrap>
+			<app-header-bootstrap
+				[name]="name()"
+				[role]="role()"
+				[layoutMode]="layoutMode()"
+				[themeMode]="themeMode()"
+				(switchLayout)="onSwitchLayout()"
+				(switchTheme)="onSwitchTheme()"
+			></app-header-bootstrap>
 		</header>
 
 		<main class="shell-bs__content" aria-label="Content">

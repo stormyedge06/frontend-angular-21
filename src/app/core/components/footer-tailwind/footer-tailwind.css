@@ -1,3 +1,11 @@
 :host {
   display: block;
 }
+
+.tw-footer {
+  border-top: 1px solid var(--app-border);
+}
+
+.tw-muted {
+  color: var(--app-muted);
+}

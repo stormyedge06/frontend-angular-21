@@ -1,3 +1,18 @@
 :host {
   display: block;
+  color: var(--app-text);
+}
+
+.tw-header {
+  border-bottom: 1px solid var(--app-border);
+}
+
+.tw-role {
+  color: var(--app-muted);
+}
+
+.tw-btn {
+  border: 1px solid var(--app-border);
+  color: var(--app-text);
+  background: transparent;
 }

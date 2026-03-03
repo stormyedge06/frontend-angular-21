@@ -10,15 +10,18 @@
 				<li><button mat-button type="button" disabled>Contacto</button></li>
 			</ul>
 		</nav>
-
-		<div class="shell-tw__switch">
-			<button mat-button type="button" (click)="onSwitchLayout()">Usar Bootstrap</button>
-		</div>
 	</aside>
 
 	<section class="shell-tw__body" aria-label="Body">
 		<header class="shell-tw__header">
-			<app-header-tailwind [name]="name()" [role]="role()" />
+			<app-header-tailwind
+				[name]="name()"
+				[role]="role()"
+				[layoutMode]="layoutMode()"
+				[themeMode]="themeMode()"
+				(switchLayout)="onSwitchLayout()"
+				(switchTheme)="onSwitchTheme()"
+			/>
 		</header>
 
 		<main class="shell-tw__content" aria-label="Content">

@@ -1,8 +1,8 @@
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { ChangeDetectionStrategy, Component, PLATFORM_ID, inject, signal } from '@angular/core';
 import { MaterialBootstrapLayout } from '../../../core/layouts/material-bootstrap-layout/material-bootstrap-layout';
 import { MaterialTailwindLayout } from '../../../core/layouts/material-tailwind-layout/material-tailwind-layout';
-import type { LayoutMode } from '../../../core/models/layout-mode.type';
+import type { LayoutMode, ThemeMode } from '../../../core/models/layout-mode.type';
 import {
   DEFAULT_PORTFOLIO_TEXT,
   PORTFOLIO_CONTENT,
@@ -25,19 +25,29 @@ type PortfolioI18nPayload = {
 })
 export class Main {
   private readonly platformId = inject(PLATFORM_ID);
-  private readonly storageKey = 'portfolio-layout-mode';
+  private readonly document = inject(DOCUMENT);
+  private readonly layoutStorageKey = 'portfolio-layout-mode';
+  private readonly themeStorageKey = 'portfolio-theme-mode';
 
   protected readonly layoutMode = signal<LayoutMode>('bootstrap');
+  protected readonly themeMode = signal<ThemeMode>('light');
 
   constructor() {
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
 
-    const savedLayout = localStorage.getItem(this.storageKey);
+    const savedLayout = localStorage.getItem(this.layoutStorageKey);
     if (savedLayout === 'bootstrap' || savedLayout === 'tailwind') {
       this.layoutMode.set(savedLayout);
     }
+
+    const savedTheme = localStorage.getItem(this.themeStorageKey);
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      this.themeMode.set(savedTheme);
+    }
+
+    this.applyThemeMode();
 
     void this.loadTextsFromEsJson();
   }
@@ -49,7 +59,18 @@ export class Main {
       return;
     }
 
-    localStorage.setItem(this.storageKey, this.layoutMode());
+    localStorage.setItem(this.layoutStorageKey, this.layoutMode());
+  }
+
+  protected toggleTheme(): void {
+    this.themeMode.update((current) => (current === 'light' ? 'dark' : 'light'));
+
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    this.applyThemeMode();
+    localStorage.setItem(this.themeStorageKey, this.themeMode());
   }
 
   protected readonly profile = signal(PORTFOLIO_CONTENT.profile);
@@ -79,4 +100,8 @@ export class Main {
     }
   }
 
+  private applyThemeMode(): void {
+    this.document.body.setAttribute('data-theme', this.themeMode());
+    this.document.body.style.colorScheme = this.themeMode();
+  }
 }

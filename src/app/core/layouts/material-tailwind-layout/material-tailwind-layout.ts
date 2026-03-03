@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FooterTailwind } from '../../components/footer-tailwind/footer-tailwind';
 import { HeaderTailwind } from '../../components/header-tailwind/header-tailwind';
+import type { LayoutMode, ThemeMode } from '../../models/layout-mode.type';
 
 @Component({
   selector: 'app-material-tailwind-layout',
@@ -14,9 +15,16 @@ import { HeaderTailwind } from '../../components/header-tailwind/header-tailwind
 export class MaterialTailwindLayout {
   readonly name = input('Tu Nombre');
   readonly role = input('Frontend Developer');
+  readonly layoutMode = input<LayoutMode>('tailwind');
+  readonly themeMode = input<ThemeMode>('light');
   readonly switchLayout = output<void>();
+  readonly switchTheme = output<void>();
 
   protected onSwitchLayout(): void {
     this.switchLayout.emit();
+  }
+
+  protected onSwitchTheme(): void {
+    this.switchTheme.emit();
   }
 }

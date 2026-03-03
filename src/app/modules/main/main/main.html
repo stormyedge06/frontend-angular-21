@@ -2,7 +2,10 @@
 	<app-material-tailwind-layout
 		[name]="profile().name"
 		[role]="profile().role"
+		[layoutMode]="layoutMode()"
+		[themeMode]="themeMode()"
 		(switchLayout)="toggleLayout()"
+		(switchTheme)="toggleTheme()"
 	>
 		<main class="portfolio" aria-label="Portfolio personal">
 			<section class="hero" id="inicio">
@@ -53,7 +56,10 @@
 	<app-material-bootstrap-layout
 		[name]="profile().name"
 		[role]="profile().role"
+		[layoutMode]="layoutMode()"
+		[themeMode]="themeMode()"
 		(switchLayout)="toggleLayout()"
+		(switchTheme)="toggleTheme()"
 	>
 		<main class="portfolio" aria-label="Portfolio personal">
 			<section class="hero" id="inicio">

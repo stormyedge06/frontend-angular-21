@@ -1,16 +1,16 @@
-<article class="project flex h-full flex-col gap-3 rounded-2xl border p-4 shadow-sm">
+<article class="project tw-card flex h-full flex-col gap-3 rounded-2xl p-4 shadow-sm">
   <h3 class="m-0 text-lg font-semibold">{{ project().name }}</h3>
   <p class="m-0">{{ project().summary }}</p>
 
   <ul class="m-0 flex list-none flex-wrap gap-2 p-0" role="list">
     @for (tech of project().stack; track tech) {
-      <li class="rounded-full border px-3 py-1 text-sm">{{ tech }}</li>
+      <li class="tw-chip rounded-full px-3 py-1 text-sm">{{ tech }}</li>
     }
   </ul>
 
   <div class="mt-1 flex flex-wrap gap-2">
     <a
-      class="rounded-lg border px-3 py-2 text-sm no-underline"
+      class="tw-link rounded-lg px-3 py-2 text-sm no-underline"
       [href]="project().demoUrl"
       target="_blank"
       rel="noreferrer"
@@ -18,7 +18,7 @@
       Demo
     </a>
     <a
-      class="rounded-lg border px-3 py-2 text-sm no-underline"
+      class="tw-link rounded-lg px-3 py-2 text-sm no-underline"
       [href]="project().repoUrl"
       target="_blank"
       rel="noreferrer"

@@ -1,3 +1,13 @@
 :host {
   display: block;
 }
+
+.tw-card,
+.tw-chip,
+.tw-link {
+  border: 1px solid var(--app-border);
+}
+
+.tw-link {
+  color: var(--app-link);
+}

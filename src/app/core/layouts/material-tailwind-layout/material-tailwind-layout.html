@@ -1,15 +1,15 @@
 <div class="shell-tw">
-	<aside class="shell-tw__sidebar" aria-label="Sidebar">
-		<mat-toolbar class="shell-tw__sidebar-title">Menu</mat-toolbar>
+	@if (menuOpen()) {
+		<button class="shell-tw__backdrop" type="button" aria-label="Cerrar menú" (click)="onCloseMenu()"></button>
+	}
 
-		<nav class="shell-tw__menu" aria-label="Navegación lateral">
-			<ul role="list">
-				<li><button mat-button type="button" disabled>Inicio</button></li>
-				<li><button mat-button type="button" disabled>Sobre mí</button></li>
-				<li><button mat-button type="button" disabled>Proyectos</button></li>
-				<li><button mat-button type="button" disabled>Contacto</button></li>
-			</ul>
-		</nav>
+	<aside
+		id="floating-menu"
+		class="shell-tw__sidebar"
+		aria-label="Sidebar"
+		[class.shell-tw__sidebar--open]="menuOpen()"
+	>
+		<app-menu-tailwind></app-menu-tailwind>
 	</aside>
 
 	<section class="shell-tw__body" aria-label="Body">
@@ -17,8 +17,10 @@
 			<app-header-tailwind
 				[name]="name()"
 				[role]="role()"
+				[menuOpen]="menuOpen()"
 				[layoutMode]="layoutMode()"
 				[themeMode]="themeMode()"
+				(toggleMenu)="onToggleMenu()"
 				(switchLayout)="onSwitchLayout()"
 				(switchTheme)="onSwitchTheme()"
 			/>

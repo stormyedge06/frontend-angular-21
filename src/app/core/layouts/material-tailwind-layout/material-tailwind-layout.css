@@ -5,41 +5,53 @@
 }
 
 .shell-tw {
-	display: grid;
-	grid-template-columns: 260px 1fr;
+	position: relative;
+	display: block;
 	height: 100%;
 	overflow: hidden;
 	background: var(--app-surface);
 	color: var(--app-text);
 }
 
+.shell-tw__backdrop {
+	position: absolute;
+	inset: 0;
+	background: transparent;
+	border: 0;
+	padding: 0;
+	z-index: 10;
+}
+
 .shell-tw__sidebar {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	width: 260px;
+	max-width: calc(100% - 2rem);
+	height: auto;
 	display: grid;
 	grid-template-rows: auto 1fr;
-	border-right: 1px solid var(--app-border);
-	overflow: hidden;
+	border: 1px solid var(--app-border);
+	border-radius: 1rem;
+	overflow: auto;
+	background: var(--app-surface);
+	z-index: 20;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(-8px);
+	transition: opacity 160ms ease, transform 160ms ease;
 }
 
-.shell-tw__sidebar-title {
-	border-bottom: 1px solid var(--app-border);
-}
-
-.shell-tw__menu {
-	padding: 0.75rem;
-	overflow: hidden;
-}
-
-.shell-tw__menu ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: grid;
-	gap: 0.4rem;
+.shell-tw__sidebar--open {
+	opacity: 1;
+	pointer-events: auto;
+	transform: translateY(0);
 }
 
 .shell-tw__body {
 	display: grid;
 	grid-template-rows: auto 1fr auto;
+	height: 100%;
 	min-height: 0;
 	overflow: hidden;
 }

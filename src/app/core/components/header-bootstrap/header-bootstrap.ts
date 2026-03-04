@@ -11,10 +11,16 @@ import type { LayoutMode, ThemeMode } from '../../models/layout-mode.type';
 export class HeaderBootstrap {
   readonly name = input('Tu Nombre');
   readonly role = input('Frontend Developer');
+  readonly menuOpen = input(false);
   readonly layoutMode = input<LayoutMode>('bootstrap');
   readonly themeMode = input<ThemeMode>('light');
+  readonly toggleMenu = output<void>();
   readonly switchLayout = output<void>();
   readonly switchTheme = output<void>();
+
+  protected onToggleMenu(): void {
+    this.toggleMenu.emit();
+  }
 
   protected onSwitchLayout(): void {
     this.switchLayout.emit();

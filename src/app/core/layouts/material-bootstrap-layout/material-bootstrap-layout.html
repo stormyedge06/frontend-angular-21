@@ -1,15 +1,15 @@
 <div class="shell-bs">
-	<aside class="shell-bs__sidebar" aria-label="Sidebar">
-		<mat-toolbar class="shell-bs__sidebar-title">Menu</mat-toolbar>
+	@if (menuOpen()) {
+		<button class="shell-bs__backdrop" type="button" aria-label="Cerrar menú" (click)="onCloseMenu()"></button>
+	}
 
-		<nav class="shell-bs__menu" aria-label="Navegación lateral">
-			<ul role="list">
-				<li><button mat-button type="button" disabled>Inicio</button></li>
-				<li><button mat-button type="button" disabled>Sobre mí</button></li>
-				<li><button mat-button type="button" disabled>Proyectos</button></li>
-				<li><button mat-button type="button" disabled>Contacto</button></li>
-			</ul>
-		</nav>
+	<aside
+		id="floating-menu"
+		class="shell-bs__sidebar"
+		aria-label="Sidebar"
+		[class.shell-bs__sidebar--open]="menuOpen()"
+	>
+		<app-menu-bootstrap />
 	</aside>
 
 	<section class="shell-bs__body" aria-label="Body">
@@ -17,8 +17,10 @@
 			<app-header-bootstrap
 				[name]="name()"
 				[role]="role()"
+				[menuOpen]="menuOpen()"
 				[layoutMode]="layoutMode()"
 				[themeMode]="themeMode()"
+				(toggleMenu)="onToggleMenu()"
 				(switchLayout)="onSwitchLayout()"
 				(switchTheme)="onSwitchTheme()"
 			></app-header-bootstrap>

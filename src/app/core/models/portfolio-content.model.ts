@@ -39,7 +39,7 @@ export const DEFAULT_PORTFOLIO_TEXT: PortfolioText = {
 
 export const PORTFOLIO_CONTENT: PortfolioContent = {
   profile: {
-    name: 'Tu Nombre',
+    name: 'Braian Oscar Loza Quiroga',
     role: 'Frontend Developer',
     about: 'Construyo interfaces web rápidas, accesibles y mantenibles con Angular y TypeScript.',
     email: 'tu-email@dominio.com',

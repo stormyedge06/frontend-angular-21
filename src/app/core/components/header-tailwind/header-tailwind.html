@@ -1,4 +1,4 @@
-<header class="tw-header flex flex-col gap-3 py-3 md:flex-row md:items-center md:justify-between">
+<header class="tw-header flex gap-3 py-3 md:flex-row md:items-center md:justify-between">
   <div class="flex items-start gap-2">
     <button
       type="button"
@@ -6,8 +6,20 @@
       (click)="onToggleMenu()"
       [attr.aria-expanded]="menuOpen()"
       aria-controls="floating-menu"
+      [attr.aria-label]="menuOpen() ? 'Cerrar menú' : 'Abrir menú'"
     >
-      {{ menuOpen() ? 'Cerrar' : 'Menú' }}
+      @if (menuOpen()) {
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      } @else {
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 12h16" />
+          <path d="M4 6h16" />
+          <path d="M4 18h16" />
+        </svg>
+      }
     </button>
 
     <div class="grid">

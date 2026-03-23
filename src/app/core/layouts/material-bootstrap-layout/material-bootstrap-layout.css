@@ -22,30 +22,26 @@
 	z-index: 10;
 }
 
-.shell-bs__sidebar {
+.shell-bs__menu {
 	position: absolute;
-	top: 1rem;
-	left: 1rem;
-	width: 260px;
-	max-width: calc(100% - 2rem);
-	height: auto;
-	display: grid;
-	grid-template-rows: auto 1fr;
-	border: 1px solid var(--app-border);
-	border-radius: 1rem;
-	overflow: auto;
-	background: var(--app-surface);
+	top: 48px;
+	left: 15px;
+	width: 283px;
+	height: 529px;
 	z-index: 20;
 	opacity: 0;
 	pointer-events: none;
 	transform: translateY(-8px);
-	transition: opacity 160ms ease, transform 160ms ease;
+	/* Cierre: espera a que los hijos terminen su animación (740ms) y luego se oculta */
+	transition: opacity 200ms ease 740ms, transform 200ms ease 740ms;
 }
 
-.shell-bs__sidebar--open {
+.shell-bs__menu--open {
 	opacity: 1;
 	pointer-events: auto;
 	transform: translateY(0);
+	/* Apertura: rápida, sin delay */
+	transition: opacity 160ms ease, transform 160ms ease;
 }
 
 .shell-bs__body {

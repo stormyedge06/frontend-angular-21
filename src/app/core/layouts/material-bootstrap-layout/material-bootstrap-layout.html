@@ -4,12 +4,13 @@
 	}
 
 	<aside
-		id="floating-menu"
-		class="shell-bs__sidebar"
-		aria-label="Sidebar"
-		[class.shell-bs__sidebar--open]="menuOpen()"
+		id="app-menu"
+		class="shell-bs__menu"
+		aria-label="Menú de navegación"
+		[class.shell-bs__menu--open]="menuOpen()"
 	>
-		<app-menu-bootstrap />
+		<!-- <app-menu-bootstrap /> -->
+    <app-menu-design [menuOpen]="menuOpen()"></app-menu-design>
 	</aside>
 
 	<section class="shell-bs__body" aria-label="Body">
@@ -27,8 +28,7 @@
 		</header>
 
 		<main class="shell-bs__content" aria-label="Content">
-			<!-- <ng-content></ng-content> -->
-       <app-menu-design></app-menu-design>
+			<ng-content></ng-content>
 		</main>
 
 		<footer class="shell-bs__footer">

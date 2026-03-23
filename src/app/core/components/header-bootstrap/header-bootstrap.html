@@ -5,7 +5,7 @@
       type="button"
       (click)="onToggleMenu()"
       [attr.aria-expanded]="menuOpen()"
-      aria-controls="floating-menu"
+      aria-controls="app-menu"
       [attr.aria-label]="menuOpen() ? 'Cerrar menú' : 'Abrir menú'"
     >
       @if (menuOpen()) {

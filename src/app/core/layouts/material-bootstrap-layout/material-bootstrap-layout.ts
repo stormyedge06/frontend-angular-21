@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
 import { FooterBootstrap } from '../../components/footer-bootstrap/footer-bootstrap';
 import { HeaderBootstrap } from '../../components/header-bootstrap/header-bootstrap';
-import { MenuBootstrap } from '../../components/menu-bootstrap/menu-bootstrap';
 import { MenuDesign } from "../../components/menu-design/menu-design";
 import type { LayoutMode, ThemeMode } from '../../models/layout-mode.type';
 
 @Component({
   selector: 'app-material-bootstrap-layout',
-  imports: [HeaderBootstrap, FooterBootstrap, MenuBootstrap, MenuDesign],
+  imports: [HeaderBootstrap, FooterBootstrap, MenuDesign],
   templateUrl: './material-bootstrap-layout.html',
   styleUrl: './material-bootstrap-layout.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
